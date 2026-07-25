@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- SEO & Metadata -->
+    <title>Mis XV Años - Romina | Invitación Digital</title>
+    <meta name="description"
+        content="Acompáñame a celebrar uno de los días más especiales de mi vida. Mis XV Años - Romina.">
+    <meta name="theme-color" content="#FFFAF8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Open Graph / WhatsApp Preview Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mis XV Años - Romina 🌸">
+    <meta property="og:description"
+        content="Con mucha ilusión quiero compartir contigo este día tan especial. ¡Haz clic para abrir mi invitación digital!">
+    <meta property="og:image" content="assets/images/og_preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Google Fonts Carga Optimizada -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="envelope-active">
+
+    <!-- Canvas para pétalos flotantes en segundo plano -->
+    <canvas id="petals-canvas"></canvas>
+
+    <!-- MARCO FLORAL LATERAL (IMAGEN DE ACUARELA CON PÉTALOS Y HOJAS) -->
+    <img class="side-floral-left" src="assets/images/flowers/03-floral-side-left.png" alt="" aria-hidden="true">
+    <img class="side-floral-right" src="assets/images/flowers/04-floral-side-right.png" style="transform: none;" alt="" aria-hidden="true">
+
+    <!-- ====================================================================
+         1. PANTALLA DE APERTURA / SOBRE DIGITAL (ENVELOPE SCREEN)
+         ==================================================================== -->
+    <section id="envelope-screen" class="envelope-screen">
+        <div class="envelope-overlay"></div>
+
+        <div class="envelope-content">
+            <span id="env-subtitle" class="envelope-subtitle">Mis XV Años</span>
+
+            <!-- Corona Dorada centrada -->
+            <div class="crown-container">
+                <svg class="crown-svg" viewBox="0 0 24 24">
+                    <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z" />
+                </svg>
+            </div>
+
+            <h1 id="env-name" class="envelope-name">Romina</h1>
+
+            <!-- Ramillete Floral PNG -->
+            <img src="assets/images/flowers/08-floral-divider.png" class="header-floral-garland" alt=""
+                aria-hidden="true">
+
+            <div id="env-display-date" class="envelope-date-badge">15 · AGOSTO · 2026</div>
+
+            <p id="env-phrase" class="envelope-phrase">
+                "Con mucha ilusión quiero compartir contigo uno de los días más especiales de mi vida."
+            </p>
+
+            <div class="btn-open-invitation-wrap">
+                <button id="open-invitation-btn" class="btn-open-invitation" aria-label="Abrir invitación">
+                    <span class="btn-open-icon">♡</span>
+                    <span>ABRIR INVITACIÓN</span>
+                    <span class="btn-open-icon">›</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOP BAR CABECERA FIJA (MENÚ + TITULO + MUSICA) -->
+    <div id="top-nav-bar" class="top-nav-bar hidden">
+        <button id="nav-toggle-btn" class="nav-toggle-btn" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <span class="top-bar-title">MIS XV AÑOS</span>
+
+        <button id="music-toggle-btn" class="music-toggle-btn" aria-label="Reproducir música" title="Música de fondo">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Drawer Menú Lateral Móvil -->
+    <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+        <nav class="mobile-nav-content">
+            <a href="#section-welcome" class="mobile-nav-link">Mi Celebración</a>
+            <a href="#section-countdown" class="mobile-nav-link">Cuenta Regresiva</a>
+            <a href="#section-itinerary" class="mobile-nav-link">Itinerario</a>
+            <a href="#section-location" class="mobile-nav-link">Ubicación</a>
+            <a href="#section-gallery" class="mobile-nav-link">Galería</a>
+            <a href="#section-dresscode" class="mobile-nav-link">Dress Code</a>
+            <a href="#section-gifts" class="mobile-nav-link">Regalos</a>
+            <a href="#section-rsvp" class="mobile-nav-link">Confirmar Asistencia</a>
+        </nav>
+    </div>
+
+    <!-- Barra de Navegación Inferior Móvil (Mobile Bottom Nav Bar) -->
+    <nav id="mobile-bottom-nav" class="mobile-bottom-nav hidden">
+        <a href="#section-welcome" class="mobile-bottom-tab active">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
+            <span>Inicio</span>
+        </a>
+        <a href="#section-itinerary" class="mobile-bottom-tab">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+            </svg>
+            <span>Itinerario</span>
+        </a>
+        <a href="#section-location" class="mobile-bottom-tab">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+            <span>Ubicación</span>
+        </a>
+        <a href="#section-gallery" class="mobile-bottom-tab">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+            </svg>
+            <span>Galería</span>
+        </a>
+        <a href="#section-rsvp" class="mobile-bottom-tab">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+            <span>RSVP</span>
+        </a>
+    </nav>
+
+    <!-- ====================================================================
+         2. INVITACIÓN COMPLETA (REVELADA TRAS PRESIONAR ABRIR INVITACIÓN)
+         ==================================================================== -->
+    <div id="invitation-content">
+
+        <!-- HERO COMPOSICIÓN CORONA + NOMBRE + GUIRNALDA FLORAL -->
+        <header class="main-invitation-header">
+            <!-- Corona Dorada centrada -->
+            <div class="crown-container">
+                <svg class="crown-svg" viewBox="0 0 24 24">
+                    <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z" />
+                </svg>
+            </div>
+
+            <h2 id="header-quinceanera-name" class="header-quinceanera-name">Romina</h2>
+
+            <!-- Ramillete Guirnalda Floral PNG -->
+            <img src="assets/images/flowers/08-floral-divider.png" class="header-floral-garland" alt=""
+                aria-hidden="true">
+
+            <div id="header-display-date" class="header-date-badge">
+                <span>15</span><span class="heart-icon">♥</span><span>AGOSTO</span><span
+                    class="heart-icon">♥</span><span>2026</span>
+            </div>
+
+            <p id="header-phrase" class="header-phrase">
+                "Con mucha ilusión quiero compartir contigo uno de los días más especiales de mi vida."
+            </p>
+        </header>
+
+        <!-- SECCIÓN DE BIENVENIDA -->
+        <section id="section-welcome" class="section-container">
+            <div class="glass-card welcome-card reveal-on-scroll">
+                <h2 id="welcome-title" class="welcome-title">Hay momentos inolvidables...</h2>
+                <p id="welcome-message" class="welcome-text">
+                    Hay momentos en la vida que merecen ser celebrados y compartidos con las personas que más queremos.
+                    Gracias por formar parte de mi historia y acompañarme en este día tan mágico.
+                </p>
+            </div>
+        </section>
+
+        <!-- CUENTA REGRESIVA (TARJETAS ROSAS EN 1 FILA) -->
+        <section id="section-countdown" class="section-container">
+            <div class="section-title-wrap reveal-on-scroll">
+                <h2 class="decorated-section-title">CUENTA REGRESIVA</h2>
+            </div>
+
+            <div class="countdown-grid-4 reveal-on-scroll">
+                <div class="countdown-card-pink">
+                    <div id="cd-days" class="countdown-num-pink">00</div>
+                    <div class="countdown-label-pink">DÍAS</div>
+                </div>
+                <div class="countdown-card-pink">
+                    <div id="cd-hours" class="countdown-num-pink">00</div>
+                    <div class="countdown-label-pink">HORAS</div>
+                </div>
+                <div class="countdown-card-pink">
+                    <div id="cd-minutes" class="countdown-num-pink">00</div>
+                    <div class="countdown-label-pink">MINUTOS</div>
+                </div>
+                <div class="countdown-card-pink">
+                    <div id="cd-seconds" class="countdown-num-pink">00</div>
+                    <div class="countdown-label-pink">SEGUNDOS</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MI CELEBRACIÓN (4 CÍRCULOS EN 1 FILA) -->
+        <section id="section-info" class="section-container">
+            <div class="section-title-wrap reveal-on-scroll">
+                <h2 class="decorated-section-title">MI CELEBRACIÓN</h2>
+            </div>
+
+            <div class="celebration-grid-4 reveal-on-scroll">
+                <!-- Fecha -->
+                <div class="celebration-item">
+                    <div class="celebration-circle-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
+                        </svg>
+                    </div>
+                    <div id="info-date-val" class="celebration-text-title">15 de Agosto</div>
+                    <div class="celebration-text-sub">de 2026</div>
+                </div>
+
+                <!-- Hora -->
+                <div class="celebration-item">
+                    <div class="celebration-circle-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                        </svg>
+                    </div>
+                    <div id="info-time-val" class="celebration-text-title">18:00 hrs</div>
+                    <div class="celebration-text-sub">Hora</div>
+                </div>
+
+                <!-- Salón -->
+                <div class="celebration-item">
+                    <div class="celebration-circle-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                    </div>
+                    <div id="info-venue-val" class="celebration-text-title">Salón de Eventos</div>
+                    <div class="celebration-text-sub">Romina</div>
+                </div>
+
+                <!-- Ciudad -->
+                <div class="celebration-item">
+                    <div class="celebration-circle-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                        </svg>
+                    </div>
+                    <div id="info-address-val" class="celebration-text-title">Ciudad de México</div>
+                    <div class="celebration-text-sub">Ubicación</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ITINERARIO DE ACTIVIDADES TIMELINE -->
+        <section id="section-itinerary" class="section-container">
+            <div class="section-title-wrap reveal-on-scroll">
+                <h2 class="decorated-section-title">ITINERARIO</h2>
+            </div>
+
+            <!-- Timeline Vertical -->
+            <div id="itinerary-timeline" class="timeline-vertical reveal-on-scroll">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </section>
+
+        <!-- UBICACIÓN Y MAPA -->
+        <section id="section-location" class="section-container">
+            <div class="section-title-wrap reveal-on-scroll">
+                <h2 class="decorated-section-title">UBICACIÓN DEL EVENTO</h2>
+            </div>
+
+            <div class="glass-card map-card reveal-on-scroll">
+                <h3 id="map-venue-name" style="font-size: 1.25rem; color: var(--color-pink-dark);">Salón Jardín Las
+                    Amapolas</h3>
+                <p id="map-address-text" style="color: var(--color-text-muted); font-size: 0.9rem;">Av. de las Rosas
+                    #1500, Col. Vista Hermosa, Ciudad de México</p>
+
+                <div class="map-iframe-container">
+                    <iframe id="google-map-iframe" title="Ubicación Google Maps" loading="lazy"
+                        allowfullscreen></iframe>
+                </div>
+
+                <div style="margin-top: 0.4rem;">
+                    <a id="map-directions-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z" />
+                        </svg>
+                        <span>CÓMO LLEGAR (ABRIR MAPAS)</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERÍA DE FOTOS -->
+        <section id="section-gallery" class="section-container">
+            <div class="section-title-wrap reveal-on-scroll">
+                <h2 class="decorated-section-title">GALERÍA DE FOTOS</h2>
+            </div>
+
+            <div id="gallery-grid" class="gallery-grid">
+                <!-- JS populate -->
+            </div>
+        </section>
+
+        <!-- LIGHTBOX MODAL -->
+        <div id="lightbox-modal" class="lightbox-modal">
+            <button id="lightbox-close" class="lightbox-close-btn" aria-label="Cerrar galeria">&times;</button>
+            <button id="lightbox-prev" class="lightbox-nav-btn lightbox-prev"
+                aria-label="Imagen anterior">&#10094;</button>
+
+            <div class="lightbox-img-wrap">
+                <img id="lightbox-img" src="" alt="Vista previa galeria">
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+            </div>
+
+            <button id="lightbox-next" class="lightbox-nav-btn lightbox-next"
+                aria-label="Siguiente imagen">&#10095;</button>
+        </div>
+
+        <!-- DRESS CODE -->
+        <section id="section-dresscode" class="section-container">
+            <div class="glass-card dresscode-card reveal-on-scroll">
+                <svg class="dresscode-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L9 7h6l-3-5zm6.5 7h-13l-1.5 12h16l-1.5-12z" />
+                </svg>
+
+                <div class="section-title-wrap" style="margin-bottom:0.5rem;">
+                    <h2 class="decorated-section-title">CÓDIGO DE VESTIMENTA</h2>
+                </div>
+
+                <div id="dresscode-title" class="dresscode-badge">Formal / Etiqueta</div>
+
+                <p id="dresscode-desc"
+                    style="max-width: 580px; margin: 0 auto; color: var(--color-text-main); font-size: 0.9rem;">
+                    Queremos compartir contigo una noche elegante y muy especial. Agradecemos evitar vestir de color
+                    rosa o blanco.
+                </p>
+            </div>
+        </section>
+
+        <!-- MESA DE REGALOS -->
+        <section id="section-gifts" class="section-container">
+            <div class="glass-card reveal-on-scroll text-center">
+                <div class="section-title-wrap" style="margin-bottom:0.8rem;">
+                    <h2 class="decorated-section-title">MESA DE REGALOS</h2>
+                </div>
+                <p id="gifts-subtitle"
+                    style="font-size: 0.92rem; color: var(--color-text-main); max-width: 600px; margin: 0 auto;">
+                    Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle especial, te dejamos las
+                    siguientes sugerencias:
+                </p>
+
+                <div id="gift-stores-grid" class="gift-stores-grid">
+                    <!-- JS populate -->
+                </div>
+
+                <div id="bank-info-box" class="bank-info-box">
+                    <!-- JS populate -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFIRMACIÓN RSVP (WHATSAPP) -->
+        <section id="section-rsvp" class="section-container">
+            <div class="glass-card rsvp-card reveal-on-scroll">
+                <div class="section-title-wrap" style="margin-bottom:0.8rem;">
+                    <h2 class="decorated-section-title">CONFIRMACIÓN RSVP</h2>
+                </div>
+
+                <p class="rsvp-text">
+                    Será un gran honor contar con tu presencia en este momento tan especial. Por favor confirma tu
+                    asistencia dando clic al siguiente botón:
+                </p>
+
+                <a id="whatsapp-rsvp-btn" href="#" class="btn-gold" style="padding: 1.1rem 2.2rem; font-size: 0.95rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+                    </svg>
+                    <span>CONFIRMAR POR WHATSAPP</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- MENSAJE FINAL -->
+        <section id="section-final" class="final-message-wrap">
+            <div class="reveal-on-scroll">
+                <p id="final-phrase-text" class="final-quote">
+                    "Gracias por formar parte de este momento tan especial. Tu presencia hará que este día sea aún más
+                    inolvidable."
+                </p>
+                <div id="final-quinceanera-name" class="final-signature">Romina</div>
+                <div
+                    style="font-family: var(--font-serif); letter-spacing: 3px; color: var(--color-gold-dark); text-transform: uppercase; margin-top: 0.5rem; font-size: 0.9rem;">
+                    Mis XV Años</div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p id="footer-text">Con cariño, Romina Salazar Vidal • Mis XV Años 🌸</p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPTS EN ORDEN OBLIGATORIO -->
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
