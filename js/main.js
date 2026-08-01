@@ -50,10 +50,10 @@ function initDynamicContent(data) {
     setElementText('welcome-message', data.welcomeMessage);
 
     // Event Info Cards (Mi Celebración 4 círculos)
-    setElementText('info-date-val', data.displayDate || "15 de Agosto");
-    setElementText('info-time-val', data.eventTime || "18:00 hrs");
+    setElementText('info-date-val', data.displayDate || "06 de Noviembre");
+    setElementText('info-time-val', data.eventTime || "14:00 hrs");
     setElementText('info-venue-val', data.venue || "Salón de Eventos");
-    setElementText('info-address-val', data.address ? data.address.split(',')[0] : "Ciudad de México");
+    setElementText('info-address-val', data.address ? data.address.split(',')[0] : "Huanimaro");
 
     // Ubicación & Mapa
     setElementText('map-venue-name', data.venue);
@@ -83,8 +83,8 @@ function initDynamicContent(data) {
     // Galería
     renderGallery(data.gallery || []);
 
-    // Mesa de Regalos
-    renderGiftRegistry(data.giftRegistry);
+    // Padres y Padrinos
+    renderParentsAndGodparents(data.parentsAndGodparents);
 
     // Mensaje Final y Footer
     setElementText('final-phrase-text', data.finalMessage);
@@ -352,51 +352,67 @@ function updateLightboxContent() {
 }
 
 /* --------------------------------------------------------------------------
-   7. MESA DE REGALOS RENDER
+   7. PADRES Y PADRINOS
    -------------------------------------------------------------------------- */
-function renderGiftRegistry(registry) {
+
+function renderParentsAndGodparents(data) {
     const section = document.getElementById('section-gifts');
+
     if (!section) return;
 
-    if (!registry || !registry.enabled) {
+    // Si la sección está desactivada desde config.js
+    if (!data || !data.enabled) {
         section.style.display = 'none';
         return;
     }
 
-    setElementText('gifts-subtitle', registry.subtitle);
+    // Título y descripción
+    setElementText(
+        'parents-godparents-title',
+        data.title || 'Padres y Padrinos'
+    );
 
-    const storesGrid = document.getElementById('gift-stores-grid');
-    if (storesGrid && registry.stores) {
-        storesGrid.innerHTML = '';
-        registry.stores.forEach(store => {
-            const card = document.createElement('a');
-            card.className = 'store-card';
-            card.href = store.url || '#';
-            card.target = '_blank';
-            card.rel = 'noopener noreferrer';
-            card.innerHTML = `
-                <div>
-                    <strong>${store.name}</strong>
-                    <div style="font-size:0.8rem; color:var(--color-text-muted);">${store.code || ''}</div>
-                </div>
-                <span class="btn-gold" style="font-size:0.75rem; padding:0.4rem 0.8rem;">Ver mesa</span>
-            `;
-            storesGrid.appendChild(card);
-        });
+    setElementText(
+        'parents-godparents-subtitle',
+        data.subtitle || ''
+    );
+
+    // Padres
+    if (data.parents) {
+
+        setElementText(
+            'parents-title',
+            data.parents.title || 'Mis Padres'
+        );
+
+        setElementText(
+            'father-name',
+            data.parents.father || ''
+        );
+
+        setElementText(
+            'mother-name',
+            data.parents.mother || ''
+        );
     }
 
-    const bankBox = document.getElementById('bank-info-box');
-    if (bankBox && registry.bankDetails && registry.bankDetails.enabled) {
-        bankBox.innerHTML = `
-            <div class="bank-info-title">💌 ${registry.bankDetails.title}</div>
-            <p style="font-size:0.85rem; color:var(--color-text-muted); margin-bottom:0.8rem;">${registry.bankDetails.description}</p>
-            <div class="bank-row"><strong>Banco:</strong> ${registry.bankDetails.bank}</div>
-            <div class="bank-row"><strong>CLABE:</strong> ${registry.bankDetails.clabe}</div>
-            <div class="bank-row"><strong>Cuenta:</strong> ${registry.bankDetails.account}</div>
-            <div class="bank-row"><strong>Beneficiario:</strong> ${registry.bankDetails.beneficiary}</div>
-        `;
-    } else if (bankBox) {
-        bankBox.style.display = 'none';
+    // Padrinos
+    if (data.godparents) {
+
+        setElementText(
+            'godparents-title',
+            data.godparents.title || 'Mis Padrinos'
+        );
+
+        setElementText(
+            'godfather-name',
+            data.godparents.godfather || ''
+        );
+
+        setElementText(
+            'godmother-name',
+            data.godparents.godmother || ''
+        );
     }
 }
 

@@ -11,24 +11,24 @@ const invitationData = {
     heroPhrase: "Con mucha ilusión quiero compartir contigo uno de los días más especiales de mi vida.",
     
     // Fecha y Hora del Evento (Formato ISO para la cuenta regresiva)
-    eventDate: "2026-08-15T18:00:00",
-    displayDate: "Sábado, 15 de Agosto de 2026",
-    eventTime: "18:00 hrs",
+    eventDate: "2026-11-06T14:00:00-06:00",
+    displayDate: "Viernes, 06 de Noviembre de 2026",
+    eventTime: "14:00 hrs",
     
     // Ubicación y Lugar
-    venue: "Salón Jardín Las Amapolas",
-    address: "Av. de las Rosas #1500, Col. Vista Hermosa, Ciudad de México",
+    venue: "Salón Princes",
+    address: "Huanimaro, GTO",
     latitude: 19.432608,
     longitude: -99.133209,
     googleMapsUrl: "https://maps.google.com/?q=19.432608,-99.133209",
-    googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.661608637085!2d-99.13539768509341!3d19.4326079868822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f92b00000001%3A0x123456789abcdef!2sZocalo!5e0!3m2!1ses!2smx!4v1600000000000!5m2!1ses!2smx",
+    googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!4v1785541373429!6m8!1m7!1s_LLMjFp9mmaJcp6V1wrsFg!2m2!1d20.36884792324512!2d-101.4927663524957!3f352.6073068665633!4f3.668149797827681!5f0.7820865974627469",
 
     // WhatsApp para confirmaciones (Incluir código de país sin '+')
     whatsappNumber: "5215512345678",
     whatsappMessageTemplate: "¡Hola! Confirmo con mucho gusto mi asistencia a los XV Años de {NAME} el {DATE}. ¡Nos vemos allá! ✨",
 
     // Música de Fondo
-    musicUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-waltz-112191.mp3",
+    musicUrl: "assets/music/BeautifulPiano.mp3",
 
     // Imágenes
     heroImage: "assets/images/hero_bg.png",
@@ -41,40 +41,35 @@ const invitationData = {
     // Itinerario de actividades
     itinerary: [
         {
-            time: "18:00",
+            time: "02:00 pm",
             title: "Ceremonia Religiosa",
             icon: "church",
-            description: "Capilla de San José. Una misa de acción de gracias."
+            description: "Templo de Nuestra Sra. de Guadalupe"
         },
         {
-            time: "20:00",
+            time: "03:00 pm",
             title: "Recepción de Invitados",
             icon: "glass",
-            description: "Coctel de bienvenida con música suave en el jardín."
+            description: ""
         },
         {
-            time: "20:30",
+            time: "03:30 pm",
             title: "Entrada de la Quinceañera",
             icon: "sparkles",
             description: "Presentación oficial de Romina ante sus invitados."
         },
         {
-            time: "21:00",
-            title: "El Vals de Honor",
-            icon: "music",
-            description: "Baile tradicional con sus padres, padrinos y chambelanes."
-        },
-        {
-            time: "21:30",
-            title: "Cena Gourmet",
+            time: "04:00 pm",
+            title: "Comida",
             icon: "utensils",
-            description: "Banquete a tres tiempos y brindis de honor."
+            description: ""
         },
+
         {
-            time: "22:30",
+            time: "08:00 pm",
             title: "Apertura de Pista & Fiesta",
             icon: "party",
-            description: "¡Música en vivo, DJ y mucha diversión!"
+            description: "¡Música en vivo"
         }
     ],
 
@@ -99,36 +94,27 @@ const invitationData = {
     ],
 
     // Dress Code (Código de Vestimenta)
-    dressCode: "Formal / Etiqueta",
-    dressCodeDescription: "Queremos compartir contigo una noche elegante y muy especial. Se sugiere vestido largo para damas y traje formal para caballeros. (Agradecemos reservar los tonos blanco y rosa para la festejada).",
+    dressCode: "Formal",
+    dressCodeDescription: "Queremos compartir contigo una noche elegante y muy especial.",
 
-    // Mesa de Regalos / Regalos (Opcional)
-    giftRegistry: {
+    // Padres y Padrinos
+    parentsAndGodparents: {
         enabled: true,
-        title: "Mesa de Regalos",
-        subtitle: "Tu presencia es nuestro mejor regalo. Si deseas obsequiarme un detalle especial, te compartimos las siguientes opciones con mucho cariño:",
-        stores: [
-            {
-                name: "Liverpool",
-                icon: "bag",
-                url: "https://www.liverpool.com.mx",
-                code: "Evento #50982341"
-            },
-            {
-                name: "Amazon",
-                icon: "package",
-                url: "https://www.amazon.com.mx",
-                code: "Mesa de Regalos XV Romina"
-            }
-        ],
-        bankDetails: {
-            enabled: true,
-            title: "Lluvia de Sobres / Transferencia",
-            description: "Si lo prefieres, dispondremos de un buzón para sobres el día del evento, o bien puedes realizar una transferencia a:",
-            bank: "BBVA Bancomer",
-            clabe: "012 180 0150982341 0",
-            account: "1509823410",
-            beneficiary: "Romina Salazar Vidal & Familia"
+
+        title: "Padres y Padrinos",
+
+        subtitle: "Con mucho cariño y gratitud, compartimos los nombres de quienes nos acompañan y forman parte especial de este momento.",
+
+        parents: {
+            title: "Mis Padres",
+            father: "Pablo Salazar",
+            mother: "Yessica Vidal"
+        },
+
+        godparents: {
+            title: "Mis Padrinos",
+            godfather: "Erick Saldaña",
+            godmother: "Adriana Vidal"
         }
     },
 
